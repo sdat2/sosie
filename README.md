@@ -120,13 +120,17 @@ Do the "raw" interpolation for the meridional component of the wind:
       >> ./../../bin/sosie3.x -f namelist.example4_O1t_y
 Now that uraw_1x1-deg-ORCA1_grid_T.nc4 and uraw_1x1-deg-ORCA1_grid_T.nc4 are created, time to correct onto the T-grid:
 
-      >> corr_vect.x -G T -f namelist.example4_O1t -m ../data/mesh_mask_ORCA1v2_light.nc4
-Check u10_1x1-deg-ORCA1_grid_T.nc4 and v10_1x1-deg-ORCA1_grid_T.nc4 (vector components on T-points of the grid).
+      >> ./../../bin/corr_vect.x -G T -f namelist.example4_O1t -m ../data/mesh_mask_ORCA1v2_light.nc4
+u10_1x1-deg-ORCA1_gridT_grid_T.nc
+u10_1x1-deg-ORCA1_gridU_grid_T.nc
+v10_1x1-deg-ORCA1_gridT_grid_T.nc
+v10_1x1-deg-ORCA1_gridV_grid_T.nc
+Check u10_1x1-deg-ORCA1_grid_T.nc and v10_1x1-deg-ORCA1_grid_T.nc (vector components on T-points of the grid).
 
 It is possible to do the same correction onto U,V grid points rather than T points:
 
-      >> corr_vect.x -G U -f namelist.example4_O1t -m ../data/mesh_mask_ORCA1v2_light.nc4
-Check u10_1x1-deg-ORCA1_grid_U.nc4 and v10_1x1-deg-ORCA1_grid_V.nc4.
+      >> ./../../bin/corr_vect.x -G U -f namelist.example4_O1t -m ../data/mesh_mask_ORCA1v2_light.nc4
+Check u10_1x1-deg-ORCA1_grid_U.nc and v10_1x1-deg-ORCA1_grid_V.nc.
 
 
 
@@ -136,7 +140,7 @@ Check u10_1x1-deg-ORCA1_grid_U.nc4 and v10_1x1-deg-ORCA1_grid_V.nc4.
 Interpolation of high-resolution surface 2-meter air temperature from ECMWF onto a polar stereographic projection of the Arctic.
 Do the interpolation:
 
-          >> sosie3.x -f namelist.example5
+          >> ./../bin/sosie3.x -f namelist.example5
 
 Check **T2M_2560x480-polar-stereo_Arctic.nc**
 
@@ -147,7 +151,7 @@ Check **T2M_2560x480-polar-stereo_Arctic.nc**
 Interpolation of a random 3D+time monthly salinity field on the ORCA2 grid to the ORCA1 grid using the bilinear method.
 Do the interpolation:
 
-          >> sosie3.x -f namelist.example6
+          >> ./../bin/sosie3.x -f namelist.example6
 
 Check **so_ORCA2-ORCA1_test.nc**
 
@@ -156,6 +160,12 @@ Check **so_ORCA2-ORCA1_test.nc**
 #### Bi-linear remapping ORCA to ORCA
 Examples are stored into "examples/ORCAX_to_ORCAY"
 
+./../../bin/sosie3.x -f namelist.ORCA2_to_ORCA1_3D
+##### Breaks!!!!!! with error message
+"""
+At line 1210 of file src/mod_manip.f90
+Fortran runtime error: Index '38' of dimension 1 of array 'j_vlat_src' above upper bound of 37
+"""
 Remapping metric/weight files for big source/target configurations can be downloaded at the following link, since they are very time-consuming to generate.
 
 https://drive.google.com/drive/folders/1YB7iuDIStZVGCi-FOh6g6AbGQmKj07Px
