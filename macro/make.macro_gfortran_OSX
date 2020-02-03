@@ -5,7 +5,13 @@
 
 
 # Fortran compiler:
-FC = /usr/local/Cellar/gcc/5.1.0/bin/x86_64-apple-darwin14.3.0-gcc-5 
+FC = /usr/local/bin/gfortran
+
+# /usr/bin/gcc ## The position of the gcc compiler on my mac
+# /usr/local/bin/gfortran ## The position of the gfortran compiler on my mac
+# ln -s macro/make.macro_gfortran-5_Linux make.macro # making a symbolic link
+# ln -s -F macro/make.macro_gfortran_OSX make.macro
+# ln -s -F macro/make.macro_gfortran_generic make.macro
 
 # Root directory for Netcdf:
 NETCDF_DIR = /usr/local
@@ -17,10 +23,12 @@ L_NCDF = -lnetcdff -lnetcdf
 
 # Fortran compilation flags:
 # -- Production
-FF = -O2 -J./mod -I./mod -ffree-line-length-164 -lgfortran -fdefault-integer-4
+# FF = -O2 -J./mod -I./mod -ffree-line-length-164 -lgfortran -i4
+# FF = -O2 -J./mod -I./mod -ffree-line-length-164 -lgfortran -finit-integer=4
+FF = -O2 -ffree-line-length-200 -fopenmp -fbounds-check -J./mod -I./mod
+# FF = -O2 -J./mod -I./mod -ffree-line-length-164 -lgfortran -fdefault-integer-4
 # -- Debugging
 #FF = -O0 -J./mod -I./mod -w -fbounds-check -ffree-line-length-164 -lgfortran
 
 # Directory to install binaries:
 INSTALL_DIR = /usr/local
-

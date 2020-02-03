@@ -33,7 +33,7 @@ Compiling the executables:
         --> check 'template\_scalar.namelist' for the interpolation of a scalar field
         --> check 'template\_U.namelist' and 'template\_V.namelist' for a vector
 
- * 'corr\_vect.x' is used to correct vector components in the case of a distorded
+ * 'corr\_vect.x' is used to correct vector components in the case of a distorted
    grid, it needs BOTH components of the vector primarly interpolated with
    'sosie3.x'. By default it only support ORCA grids configuration.
    See the EXAMPLE section for more details.
@@ -67,7 +67,7 @@ The common approach to test a given example (# X):
 
      >> cd examples/
      >> gunzip data/*.gz
-     >> sosie3.x -f namelist.exampleX
+     >> ./../bin/sosie3.x -f namelist.exampleX
 
 &nbsp;
 
@@ -76,7 +76,7 @@ Interpolation of Reynolds (2002) Long Term Mean SST onto the ORCA1 grid
 (illustrated on Fig. 3-4). Uncompress files coordinates+tmask\_ORCA1.nc.gz and
 sst.ltm.1971-2000.nc.gz in ./data
 
-      >> sosie3.x -f namelist.example1
+      >> ./../bin/sosie3.x -f namelist.example1
 
 Check SST\_360x180-ORCA1\_REYNOLDS\_LTM.nc
 
@@ -88,7 +88,7 @@ Check SST\_360x180-ORCA1\_REYNOLDS\_LTM.nc
 (only march). Uncompress files coordinates+tmask\_ORCA1.nc.gz and
 T\_levitus\_march.nc.gz in ./data
 
-     >> sosie3.x -f namelist.example2
+     >> ./../bin/sosie3.x -f namelist.example2
 Check temp\_360x180-ORCA1\_march.nc
 
 &nbsp;
@@ -99,14 +99,14 @@ Check temp\_360x180-ORCA1\_march.nc
 lat-lon 1x1 deg. grid using the bilinear algorithm. Uncompress the file
 sst\_ORCA1\_example.nc.gz in ./data
 
-    >> sosie3.x -f namelist.example3
+    >> ./../bin/sosie3.x -f namelist.example3
 Check sst\_ORCA1-1x1\_test.nc
 
 &nbsp;
 
 #### Example #4: Interpolation and correction of a 2D vector field from a regular lat-lon 1x1 deg. grid to an irregular grid (ORCA1)
 
-As the ORCA family of grids gets distorded in the northern hemisphere it is
+As the ORCA family of grids gets distorted in the northern hemisphere it is
 necessary to correct (i.e. rotate) both components of the vector. In this
 example the input vector field is the wind at 10 from a few 6-hourly snapshots
 of the ERA-INTERIM re-analysis.
@@ -114,10 +114,10 @@ of the ERA-INTERIM re-analysis.
       >> cd examples/vector_correction/
 Do the "raw" interpolation for the zonal component of the wind:
 
-      >> sosie3.x -f namelist.example4_O1t_x
+      >> ./../../bin/sosie3.x -f namelist.example4_O1t_x
 Do the "raw" interpolation for the meridional component of the wind:
 
-      >> sosie3.x -f namelist.example4_O1t_y
+      >> ./../../bin/sosie3.x -f namelist.example4_O1t_y
 Now that uraw_1x1-deg-ORCA1_grid_T.nc4 and uraw_1x1-deg-ORCA1_grid_T.nc4 are created, time to correct onto the T-grid:
 
       >> corr_vect.x -G T -f namelist.example4_O1t -m ../data/mesh_mask_ORCA1v2_light.nc4
@@ -153,11 +153,9 @@ Check **so_ORCA2-ORCA1_test.nc**
 
 &nbsp;
 
-#### Bi-linear remapping ORCA to ORCA 
+#### Bi-linear remapping ORCA to ORCA
 Examples are stored into "examples/ORCAX_to_ORCAY"
 
-Remapping metric/weight files for big source/target configurations can be downloaded at the following link, since they are very time-consuming to generate. 
+Remapping metric/weight files for big source/target configurations can be downloaded at the following link, since they are very time-consuming to generate.
 
 https://drive.google.com/drive/folders/1YB7iuDIStZVGCi-FOh6g6AbGQmKj07Px
-
-
